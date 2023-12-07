@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CIDM3312_WorkList.Migrations
 {
     [DbContext(typeof(UserWorkDbContext))]
-    [Migration("20231207151300_InitialCreate")]
+    [Migration("20231207160836_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

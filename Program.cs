@@ -1,14 +1,24 @@
 using CIDM3312_WorkList.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<UserTaskDbContext>(options =>
-     options.UseSqlite(builder.Configuration.GetConnectionString("UserTaskContext")));
-     
+builder.Services.AddDbContext<UserWorkDbContext>(options =>
+     options.UseSqlite(builder.Configuration.GetConnectionString("UserWorkContext")));
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    
+    SeedData.Initialize(services);
+}
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
